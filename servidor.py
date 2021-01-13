@@ -22,6 +22,6 @@ try:
         #Aceitando conexão com o cliente ao se conectar, receberá o ip e a porta
         client, address = servidor.accept()
         
-        
+        print('Cliente conectado')
 
 except: print('Servidor desconectado da Rede')

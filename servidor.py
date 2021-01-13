@@ -12,12 +12,12 @@ try:
     #Número de clientes que vão ficar em filas
     servidor.listen( 5 )
 
-    
+    print('Servidor ligado - porta: 3315')
 
     #Iniciando um laço de repetição para a porta sempre ficar escutando e esperando o cliente
     while True:
         
-        
+        print('Aguardando conexão . . .')
         
         #Aceitando conexão com o cliente ao se conectar, receberá o ip e a porta
         client, address = servidor.accept()

@@ -13,15 +13,36 @@ try:
     servidor.listen( 5 )
 
     print('Servidor ligado - porta: 3315')
+    
+    print('Aguardando conexão . . .')
+    print('')
+    
+    #Aceitando conexão com o cliente ao se conectar, receberá o ip e a porta
+    client, ender = servidor.accept()
+    lista = []
+    lista.append(ender)
+    print(lista)
 
     #Iniciando um laço de repetição para a porta sempre ficar escutando e esperando o cliente
     while True:
-        
-        print('Aguardando conexão . . .')
-        
-        #Aceitando conexão com o cliente ao se conectar, receberá o ip e a porta
-        client, address = servidor.accept()
-        
-        print('Cliente conectado')
 
-except: print('Servidor desconectado da Rede')
+        print('Cliente conectado')
+        print('')
+        
+        data = client.recv(1024)
+        
+        if not data:
+            print('Fechando a conexão')
+            print('')
+            client.close()
+            break
+        
+        msgRecebe = data.decode()
+        
+        msgEnviar = 'Você digitou '+str(msgRecebe)
+        
+        client.sendall(msgEnviar.encode())
+
+except Exception as erro: 
+    print('Servidor desconectado da Rede')
+    print(erro)
